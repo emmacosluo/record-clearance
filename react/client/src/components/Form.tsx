@@ -8,7 +8,6 @@ import PopUp from 'components/PopUp';
 
 import BeforeYouBegin from 'flows/BeforeYouBegin';
 import Step1 from 'flows/Step1';
-import Step2 from 'flows/Step2';
 import Step3 from 'flows/Step3';
 import Step4 from 'flows/Step4';
 import Step5 from 'flows/Step5';
@@ -112,7 +111,11 @@ const Form = ({ pageNumber, goToPage, onChangeAffirmation }: FormProps) => {
       )}
 
       {pageNumber === 3 && (
-        <InvolvementStep inputs={inputs} setInputs={setInputs} goToPage={goToPage} />
+        <InvolvementStep
+          inputs={inputs}
+          setInputs={setInputs}
+          goToPage={goToPage}
+        />
       )}
 
       {pageNumber === 4 && (
