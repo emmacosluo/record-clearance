@@ -1,5 +1,5 @@
 import React from 'react';
-import { Theme, makeStyles, createStyles } from '@material-ui/core';
+import { Button, Theme, makeStyles, createStyles } from '@material-ui/core';
 
 import arrowRight from '../assets/arrowRight.svg';
 
@@ -18,9 +18,7 @@ interface StyleProps {
 const useStyles = makeStyles<Theme, StyleProps>(() =>
   createStyles({
     root: {
-      color: '#FFFFFF',
       padding: '12px 16px',
-      boxShadow: '4px 4px 16px rgba(61, 0, 102, 0.25)',
       display: 'flex',
       border: 'none',
       borderRadius: '24px',
@@ -30,12 +28,49 @@ const useStyles = makeStyles<Theme, StyleProps>(() =>
       fontSize: '14px',
       lineHeight: '16px',
       letterSpacing: '0.0125em',
-      textTrasnform: 'uppercase',
+      textTransform: 'uppercase',
       marginBottom: '1rem',
       cursor: 'pointer',
-      background: (props) => (props.theme === 'dark' ? '#25003F' : '#9903FF'),
+
+      boxShadow: (props) => {
+        switch (props.theme) {
+          case 'transparent':
+            return 'none';
+          default:
+            return `4px 4px 16px rgba(61, 0, 102, 0.25)`;
+        }
+      },
+
+      color: (props) => {
+        switch (props.theme) {
+          case 'transparent':
+            return '#25003F, 100%';
+          default:
+            return '#FFFFFF';
+        }
+      },
+
+      background: (props) => {
+        switch (props.theme) {
+          case 'dark':
+            return '#25003F';
+          case 'transparent':
+            return 'white';
+          default:
+            return '#9903FF';
+        }
+      },
       '&:hover': {
-        background: (props) => (props.theme === 'dark' ? '#330652' : '#a224f7'),
+        background: (props) => {
+          switch (props.theme) {
+            case 'dark':
+              return '#330652';
+            case 'transparent':
+              return 'white';
+            default:
+              return '#a224f7';
+          }
+        },
       },
       '& img': {
         marginLeft: '10px',
@@ -45,15 +80,20 @@ const useStyles = makeStyles<Theme, StyleProps>(() =>
   })
 );
 
-const Button = ({ theme, hasArrow, buttonText, onClick }: ComponentProps) => {
+const ButtonComponent = ({
+  theme,
+  hasArrow,
+  buttonText,
+  onClick,
+}: ComponentProps) => {
   const styleProps = { theme, hasArrow };
   const classes = useStyles(styleProps);
   return (
-    <button type="button" className={classes.root} onClick={onClick}>
+    <Button type="button" className={classes.root} onClick={onClick}>
       {buttonText}
       {hasArrow && <img src={arrowRight} alt="arrow right" />}
-    </button>
+    </Button>
   );
 };
 
-export default Button;
+export default ButtonComponent;
