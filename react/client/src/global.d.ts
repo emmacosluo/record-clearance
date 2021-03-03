@@ -24,4 +24,6 @@ interface StepProps {
   setInputs: (value: any) => void;
   inputs: userInputs;
   goToPage: (pageNumber: number) => void;
+  nextPage: () => void;
+  backPage: () => void;
 }

@@ -18,7 +18,7 @@ const RoutingContextProvider = ({
   };
 
   return (
-    <RoutingContext.Provider value={{ goToPage, pageNumber }}>
+    <RoutingContext.Provider value={{ goToPage, pageNumber, history }}>
       {children}
     </RoutingContext.Provider>
   );

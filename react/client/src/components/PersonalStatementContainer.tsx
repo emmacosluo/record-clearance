@@ -67,6 +67,7 @@ const PersonalStatement = ({ history, match }: PersonalStatementProps) => {
             pageNumber={pageNumber}
             goToPage={goToPage}
             onChangeAffirmation={() => {}}
+            history={history}
           />
         )}
       </div>

@@ -4,7 +4,13 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import TextPreview from 'components/TextPreview';
 
-const Step1 = ({ inputs, setInputs, goToPage }: StepProps) => {
+const Step1 = ({
+  inputs,
+  setInputs,
+  goToPage,
+  nextPage,
+  backPage,
+}: StepProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputName = e.currentTarget.name;
     const inputValue = e.currentTarget.value;
@@ -48,8 +54,8 @@ const Step1 = ({ inputs, setInputs, goToPage }: StepProps) => {
           isValid
           defaultValue={inputs.introduction}
         />
-        <Button onClick={() => goToPage(1)} buttonText="BACK" />
-        <Button onClick={() => goToPage(4)} buttonText="LOOKS GOOD" />
+        <Button onClick={() => backPage()} buttonText="BACK" />
+        <Button onClick={() => nextPage()} buttonText="LOOKS GOOD" />
         <TextPreview
           content="Thank you so much for taking the time to read my personal statement. My name is Jenna Smith, and I am 27 years old. I am also a proud veteran of the United States Armed Forces."
           onAdjustClick={() => console.log('adjust clicked')}

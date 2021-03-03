@@ -36,9 +36,15 @@ interface FormProps {
   pageNumber: number;
   goToPage: (pageNumber: number) => void;
   onChangeAffirmation: (newState: object) => void;
+  history: any;
 }
 
-const Form = ({ pageNumber, goToPage, onChangeAffirmation }: FormProps) => {
+const Form = ({
+  pageNumber,
+  goToPage,
+  onChangeAffirmation,
+  history,
+}: FormProps) => {
   const classes = useStyles();
   const utilityClasses = useUtilityStyles({});
   const [inputs, setInputs] = useState<userInputs>({
@@ -63,6 +69,12 @@ const Form = ({ pageNumber, goToPage, onChangeAffirmation }: FormProps) => {
 
     pdf: undefined,
   });
+  const nextPage = () => {
+    history.push(`/form/${pageNumber + 1}`);
+  };
+  const backPage = () => {
+    history.push(`/form/${pageNumber - 1}`);
+  };
   // todo: move text into a json for localization
   useEffect(() => {
     switch (pageNumber) {
@@ -106,23 +118,53 @@ const Form = ({ pageNumber, goToPage, onChangeAffirmation }: FormProps) => {
       {pageNumber === 1 && <BeforeYouBegin goToPage={goToPage} />}
 
       {pageNumber === 2 && (
-        <Step1 inputs={inputs} setInputs={setInputs} goToPage={goToPage} />
+        <Step1
+          inputs={inputs}
+          setInputs={setInputs}
+          goToPage={goToPage}
+          nextPage={nextPage}
+          backPage={backPage}
+        />
       )}
 
       {pageNumber === 3 && (
-        <Step2 inputs={inputs} setInputs={setInputs} goToPage={goToPage} />
+        <Step2
+          inputs={inputs}
+          setInputs={setInputs}
+          goToPage={goToPage}
+          nextPage={nextPage}
+          backPage={backPage}
+        />
       )}
 
       {pageNumber === 4 && (
-        <Step3 inputs={inputs} setInputs={setInputs} goToPage={goToPage} />
+        <Step3
+          inputs={inputs}
+          setInputs={setInputs}
+          goToPage={goToPage}
+          nextPage={nextPage}
+          backPage={backPage}
+        />
       )}
 
       {pageNumber === 5 && (
-        <Step4 inputs={inputs} setInputs={setInputs} goToPage={goToPage} />
+        <Step4
+          inputs={inputs}
+          setInputs={setInputs}
+          goToPage={goToPage}
+          nextPage={nextPage}
+          backPage={backPage}
+        />
       )}
 
       {pageNumber === 6 && (
-        <Step5 inputs={inputs} setInputs={setInputs} goToPage={goToPage} />
+        <Step5
+          inputs={inputs}
+          setInputs={setInputs}
+          goToPage={goToPage}
+          nextPage={nextPage}
+          backPage={backPage}
+        />
       )}
 
       {pageNumber === 7 && (
@@ -139,7 +181,13 @@ const Form = ({ pageNumber, goToPage, onChangeAffirmation }: FormProps) => {
         </div>
       )}
       {pageNumber === 9 && (
-        <Download inputs={inputs} setInputs={setInputs} goToPage={goToPage} />
+        <Download
+          inputs={inputs}
+          setInputs={setInputs}
+          goToPage={goToPage}
+          nextPage={nextPage}
+          backPage={backPage}
+        />
       )}
       <PopUp
         title="Some advice for your personal statement"
